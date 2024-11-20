@@ -1,0 +1,117 @@
+/* Container for the products */
+.product_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill) ;max-width: 1450px; 
+    margin: 100px auto 100px auto;
+    gap: 50px;
+    justify-items: center;
+}
+
+.product_container section{
+    margin: 0 auto;
+}
+
+/* Product card container */
+.card_container {
+    width: 100%;
+    max-width: 230px; /* Set a max width to match Amazon's card size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hover effect */
+.card_container:hover {
+    transform: translateY(-5px);
+}
+
+/* Image inside the card */
+.card_container img {
+    width: 100%;
+    height: 200px; /* Limit the height of the image */
+    object-fit: contain;
+    margin-bottom: 15px; /* Add spacing below the image */
+}
+
+/* Title styling */
+.card_container h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Rating section */
+.card_container .rating {
+    margin-bottom: 10px;
+}
+
+/* Price styling */
+.card_container .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #B12704; /* Amazon's price color */
+    margin-bottom: 15px;
+}
+
+/* Button */
+.button {
+    display: none;
+    padding: 8px;
+    background-color: #FF9900; /* Amazon orange */
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.card_container:hover .button {
+    display: block;
+}
+
+/* Button hover effect */
+.button:hover {
+    background-color: #FF7700;
+}
+
+/* Rating count */
+.card_container small {
+    color: #777;
+    font-size: 12px;
+}
+
+.rating{
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+    .product_container {
+        grid-template-columns: repeat(4, 1fr); /* Adjust to 4 items per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .product_container {
+        grid-template-columns: repeat(3, 1fr); /* Adjust to 3 items per row on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .product_container {
+        grid-template-columns: repeat(2, 1fr); /* Adjust to 2 items per row on very small screens */
+    }
+}
