@@ -3,6 +3,7 @@ import Rating from '@mui/material/Rating';
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import { img } from '../Carousel/img/data';
 import classes from './Product.module.css';
+import {Link} from 'react-router-dom';
 
 function ProductCard({ product }) {  // Destructure 'product' prop correctly
     const { image, title, id, rating = {}, price } = product;  // Default empty object for rating
@@ -10,9 +11,9 @@ function ProductCard({ product }) {  // Destructure 'product' prop correctly
 
     return (
         <div className={classes.card_container}>
-            <a href="">
+            <Link to={`product/${id}`}>
                 <img src={image} alt={title} />
-            </a>
+            </Link>
             <div>
                 <h3>{title}</h3>
                 <div className={classes.rating}>

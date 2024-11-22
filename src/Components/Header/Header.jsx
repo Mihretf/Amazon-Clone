@@ -4,6 +4,7 @@ import LowerHeader from './LowerHeader';
 import { CiSearch } from 'react-icons/ci';
 import { CiShoppingCart } from 'react-icons/ci';
 import { SlLocationPin } from 'react-icons/sl';
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -11,12 +12,12 @@ const Header = () => {
       <div className={classes.header_container}>
         {/* Left Section: Logo and Delivery */}
         <div className={classes.logo_container}>
-          <a href="/">
+          <Link to="/">
             <img
               src="https://pngimg.com/d/amazon_PNG11.png"
               alt="amazon logo"
             />
-          </a>
+          </Link>
           <div className={classes.delivery}>
             <span>
               <SlLocationPin />
@@ -41,7 +42,7 @@ const Header = () => {
 
           <div className={classes.order_container}>
             {/* Language Selector */}
-            <a href="" className={classes.language}>
+            <Link to="" className={classes.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/d/de/Flag_of_the_United_States.png"
                 alt="US flag"
@@ -49,25 +50,25 @@ const Header = () => {
               <select name="" id="">
                 <option value="">EN</option>
               </select>
-            </a>
+            </Link>
 
             {/* Sign In Section */}
-            <a href="/signin">
+            <Link to="/auth">
               <p>Sign In</p>
               <span>Account & Lists</span>
-            </a>
+            </Link>
 
             {/* Orders Section */}
-            <a href="">
+            <Link to="/orders">
               <p>Returns</p>
               <span>& Orders</span>
-            </a>
+            </Link>
 
             {/* Cart Section */}
-            <a href="" className={classes.cart}>
+            <Link to="/carts" className={classes.cart}>
               <CiShoppingCart size={35} />
               <span>0</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

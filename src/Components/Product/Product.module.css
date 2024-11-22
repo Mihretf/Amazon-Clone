@@ -2,7 +2,7 @@
 .product_container {
     display: grid;
     grid-template-columns: repeat(auto-fill) ;max-width: 1450px; 
-    margin: 100px auto 100px auto;
+    margin: 100px 150px 100px 150px;
     gap: 50px;
     justify-items: center;
 }
@@ -98,9 +98,9 @@
 }
 
 /* Mobile responsiveness */
-@media (max-width: 1024px) {
+@media (max-width: 1500px) {
     .product_container {
-        grid-template-columns: repeat(4, 1fr); /* Adjust to 4 items per row on tablets */
+        grid-template-columns: repeat(5, 1fr); /* Adjust to 4 items per row on tablets */
     }
 }
 
