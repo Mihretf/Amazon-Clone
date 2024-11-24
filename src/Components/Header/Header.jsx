@@ -13,7 +13,8 @@ const [{basket},dispatch] =useContext(DataContext)
 
 
   return (
-    <section>
+
+    <section className={classes.fixed}>
       <div className={classes.header_container}>
         {/* Left Section: Logo and Delivery */}
         <div className={classes.logo_container}>
