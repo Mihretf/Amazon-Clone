@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './header.module.css';
 import LowerHeader from './LowerHeader';
 import { CiSearch } from 'react-icons/ci';
 import { CiShoppingCart } from 'react-icons/ci';
 import { SlLocationPin } from 'react-icons/sl';
 import {Link} from 'react-router-dom'
+import { DataContext } from '../DataProvider/DataProvider';
 
 const Header = () => {
+const [{basket},dispatch] =useContext(DataContext)
+
+
+
   return (
     <section>
       <div className={classes.header_container}>
@@ -67,7 +72,7 @@ const Header = () => {
             {/* Cart Section */}
             <Link to="/carts" className={classes.cart}>
               <CiShoppingCart size={35} />
-              <span>0</span>
+              <span>{basket.length}</span>
             </Link>
           </div>
         </div>
