@@ -4,7 +4,7 @@
     grid-template-columns: repeat(auto-fill) ;max-width: 1450px; 
     margin: 100px 150px 100px 150px;
     gap: 50px;
-    justify-items: center;
+    /* justify-items: center; */
 }
 
 .product_container section{
@@ -14,16 +14,16 @@
 /* Product card container */
 .card_container {
     width: 100%;
-    max-width: 230px; /* Set a max width to match Amazon's card size */
+    /* max-width: 230px; Set a max width to match Amazon's card size */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
     padding: 10px;
     background-color: white;
     border-radius: 8px;
-    text-align: center;
+    /* text-align: center; */
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 /* Hover effect */
@@ -114,4 +114,38 @@
     .product_container {
         grid-template-columns: repeat(2, 1fr); /* Adjust to 2 items per row on very small screens */
     }
+}
+
+.products__flexed {
+    box-shadow: none;
+    height: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 50px;
+
+
+}
+
+.products__flexed h3 {
+    padding: 20px 0px;
+
+
+}
+
+.products__flexed .button{
+    display: block;
+    position: static;
+    width: 150px;
+    margin-right: 40px;
+}
+
+.products__flexed{
+    height: 50vh;
+
+}
+
+.products__flexed img {
+    width: 300px !important;
+    height: auto;
 }

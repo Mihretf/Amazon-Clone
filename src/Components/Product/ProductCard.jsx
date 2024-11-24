@@ -5,20 +5,19 @@ import { img } from '../Carousel/img/data';
 import classes from './Product.module.css';
 import {Link} from 'react-router-dom';
 
-function ProductCard({ product }) {  // Destructure 'product' prop correctly
-    const { image, title, id, rating = {}, price } = product;  // Default empty object for rating
-    const { rate = 0, count = 0 } = rating;  // Default values for rate and count
-
+function ProductCard({ product,flex,renderDesc }) {  // Destructure 'product' prop correctly
+    const { image, title, id, rating, price, description } = product;  
     return (
-        <div className={classes.card_container}>
-            <Link to={`product/${id}`}>
-                <img src={image} alt={title} />
+        <div className={`${classes.card_container} ${flex?classes.products__flexed : ''}` }>
+            <Link to={`/product/${id}`}>
+                <img src={image} alt="" className={classes.img_container} />
             </Link>
             <div>
                 <h3>{title}</h3>
+                {renderDesc && <div style={{maxWidth: "750px"}}>{description}</div>}
                 <div className={classes.rating}>
-                    <Rating value={rate} precision={0.1} />
-                    <small>{count}</small>
+                    <Rating value={rating?.rate} precision={0.1} />
+                    <small>{rating?.count}</small>
                 </div>
                 <div className={classes.price}>
                     <CurrencyFormat amount={price} />

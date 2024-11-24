@@ -27,17 +27,15 @@ function ProductDetail() {
         console.log(err);
         setIsLoading(false); // Stop loading even if there's an error
       });
-  }, [productId]);
+  }, []);
 
   return (
     <LayOut>
-      {isLoading ? (
-        <div className={classes.loader_container}>
-          <Loader /> {/* Display loader while data is being fetched */}
-        </div>
-      ) : (
-        <ProductCard product={product} /> 
-      )}
+      {isLoading ? (<Loader/>):(<ProductCard 
+      product={product}
+      flex ={true}
+      renderDesc={true}
+       />)}
     </LayOut>
   );
 }
