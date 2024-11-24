@@ -8,8 +8,8 @@ import { DataContext } from '../DataProvider/DataProvider';
 import { type } from '../../Utility/action.type'
 
 
-function ProductCard({ product,flex,renderDesc }) {  // Destructure 'product' prop correctly
-    const { image, title, id, rating, price, description } = product; 
+function ProductCard({ product,flex,renderDesc, renderAdd}) {  // Destructure 'product' prop correctly
+    const { image, title, id, rating, price, description, } = product; 
     
     const [state,dispatch]=useContext(DataContext)
 
@@ -43,9 +43,15 @@ function ProductCard({ product,flex,renderDesc }) {  // Destructure 'product' pr
                 <div className={classes.price}>
                     <CurrencyFormat amount={price} />
                 </div>
-                <button className={classes.button} onClick={addToCart}>
-                    Add to Cart
-                </button>
+                
+                {
+                renderAdd && <button className={classes.button} onClick={addToCart}>
+                Add to Cart
+            </button>
+
+                }
+
+                
             </div>
         </div>
     );

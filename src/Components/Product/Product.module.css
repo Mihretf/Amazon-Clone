@@ -147,5 +147,5 @@
 
 .products__flexed img {
     width: 300px !important;
-    height: auto;
+    /* height: auto; */
 }
