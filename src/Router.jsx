@@ -5,7 +5,7 @@ import Landing from './Pages/Landing/Landing';
 import Payment from './Pages/Payment/Payment';
 import Orders from './Pages/Orders/Orders';
 import Cart from './Pages/Cart/Cart';
-import Auth from './Pages/Auth/SignUp';
+import Auth from './Pages/Auth/Auth';
 import Results from './Pages/Results/Results';
 import ProductDetail from './Pages/ProductDetail/ProductDetail'
 
