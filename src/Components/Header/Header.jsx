@@ -6,9 +6,10 @@ import { CiShoppingCart } from 'react-icons/ci';
 import { SlLocationPin } from 'react-icons/sl';
 import {Link} from 'react-router-dom'
 import { DataContext } from '../DataProvider/DataProvider';
+import {auth} from "../../Utility/firebase"
 
 const Header = () => {
-const [{basket},dispatch] =useContext(DataContext)
+const [{basket, user},dispatch] =useContext(DataContext)
 const totalItem = basket?.reduce((amount,item) =>{
   return item.amount + amount
 },0)
@@ -61,11 +62,28 @@ const totalItem = basket?.reduce((amount,item) =>{
             </Link>
 
             {/* Sign In Section */}
-            <Link to="/auth">
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+            <Link to={!user && "/auth"}>
+            <div>{
+              user?(
+                <>
+                <p>Hello {user?.email?.split("@")[0]}</p>
+                <span onClick={()=>auth.signOut()}>Sign Out</span>
+                </>
+              
+              ) :(
+                <p>
+                  <p>Hello, Sign In</p>
+                  <span>Account & Lists</span>
+                </p>
+                
+              )
+              }
+               
+            </div>
+             
+            
             </Link>
-
+  
             {/* Orders Section */}
             <Link to="/orders">
               <p>Returns</p>

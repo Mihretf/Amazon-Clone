@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
 import LayOut from '../../Components/LayOut/LayOut';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import classes from './SignUp.module.css';
 import {auth} from "../../Utility/firebase";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
+import {ClipLoader} from "react-spinners";
 import { DataContext } from '../../Components/DataProvider/DataProvider';
 import { Type } from '../../Utility/action.type';
 
@@ -12,36 +13,58 @@ function Auth() {
 const [email, setEmail]= useState("");
 const [password, setPassword]=useState("");
 const [error, setError] =useState("");
-const [{user}, dispatch] =useContext(DataContext);
 
-const authHandler = async(e) => {
+const [loading, setLoading] = useState ({
+  signIn:false,
+  signUp:false,
+});
+const [{user}, dispatch] =useContext(DataContext);
+const navigate= useNavigate()
+
+const authHandler = (e) => {
   e.preventDefault();
   console.log(e.target.name);
 
-  if(e.target.name == "signIn"){
-    signInWithEmailAndPassword(auth, email, password).then((userInfo)=>{
-      console.log(user);
-      dispatch({
-        type:Type.SET_USER,
-        user:userInfo.user
-      })
-    }).catch((err)=>{
-      console.log(err);
-    })
+  setError(""); // Clear any previous error
 
-  }else{
-    createUserWithEmailAndPassword(auth, email, password).then
-    ((userInfo)=>{
-      console.log(user);
-      dispatch({
-        type:Type.SET_USER,
-        user:userInfo.user
+  if (e.target.name === "signIn") {
+    setLoading({ ...loading, signIn: true });
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userInfo) => {
+        console.log(userInfo.user);
+        dispatch({
+          type: Type.SET_USER,
+          user: userInfo.user,
+        });
+        setLoading({ ...loading, signIn: false }); 
+        navigate("/")
       })
-    }).catch((err)=>{
-      console.log(err);
-    })
+      .catch((err) => {
+        setError(err.message);
+        setLoading({ ...loading, signIn: false }); 
+      });
+
+  } else if (e.target.name === "signUp") {
+    setLoading({ ...loading, signUp: true });
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userInfo) => {
+        console.log(userInfo.user);
+        dispatch({
+          type: Type.SET_USER,
+          user: userInfo.user,
+        });
+        setLoading({ ...loading, signUp: false }); 
+        navigate("/")
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading({ ...loading, signUp: false }); 
+      });
   }
 };
+
 
 
 //console.log(password,email);
@@ -50,7 +73,7 @@ const authHandler = async(e) => {
     <section className={classes.login}>
       {/* logo */}
 
-      <Link >
+      <Link to={"/"} >
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/603px-Amazon_logo.svg.png"
               alt="amazon logo"
@@ -79,7 +102,13 @@ const authHandler = async(e) => {
           name="signIn"
           onClick={authHandler}
           className={classes.login__signInButton}>
-            Sign In
+            {loading.signIn ? (
+              <ClipLoader color="#000" size={15}></ClipLoader>
+            ): (
+              "Sign In"
+            )}
+          
+
           </button>
 
         </form>
@@ -91,8 +120,22 @@ const authHandler = async(e) => {
          type= "submit" 
          name="signUp"
          onClick={authHandler} 
-         className={classes.login__registerButton}> Create your Amazon Account          
+         className={classes.login__registerButton}>
+           {loading.signUp ? (
+              <ClipLoader color="#000" size={15}></ClipLoader>
+            ): (
+              "Create your Amazon Account"          
+
+            )}
+          
+          
+                   
         </button>
+        {
+          error && <small  style ={{paddingTop: "5px" ,color:"red"}}>
+            {error}
+          </small>
+        }
 
 
       </div>
