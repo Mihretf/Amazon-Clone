@@ -31,10 +31,12 @@
   }
   
   .logo_container img {
-    width: 80%;
-    padding-top: 5px;
-    vertical-align: middle;
-  }
+    width: auto; /* Allow dynamic resizing */
+    max-width: 150px; /* Set a maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    transition: width 0.3s ease; /* Smooth scaling effect */
+}
+
   
   .delivery {
     display: flex;
@@ -202,12 +204,18 @@
 
 
 
-  @media screen and (max-width: 570px) {
+  @media screen and (max-width: 468px) {
     .header_container{
         display: flex;
         flex-direction: column !important ;
         height: auto;
     }
+
+    .logo_container {
+      flex: 1 0 auto; /* Prevent shrinking */
+      max-width: 100%; /* Allow full width for the logo */
+  }
+
 
     .lower_container ul li:not(:first-child){
         display: none;    

@@ -10,10 +10,11 @@ import {ClipLoader} from "react-spinners";
 import { db } from '../../Utility/firebase';
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { Type } from '../../Utility/action.type'; 
 
 
 function Payment() {
-  const[{ user, basket }] =useContext
+  const[{ user, basket }, dispatch] =useContext
   (DataContext);
   const totalItem = basket?.reduce((amount,item) =>{
     return item.amount + amount
@@ -69,7 +70,11 @@ function Payment() {
       });
   
       console.log("Order saved successfully:", paymentIntent.id);
-  
+
+
+       // empty the basket
+         dispatch({type: Type.EMPTY_BASKET})
+
       setProcessing(false);
       navigate("/orders", {state: {msg:"You have placed a new order"} });
     } catch (error) {
